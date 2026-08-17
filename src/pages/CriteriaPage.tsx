@@ -16,6 +16,7 @@ import {
   Star,
 } from "lucide-react";
 import Footer from "../sections/Footer";
+import { useLanguage } from "../i18n/LanguageContext";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -57,6 +58,7 @@ function RevealSection({
 
 /* Hero */
 function HeroCompact() {
+  const { t } = useLanguage();
   return (
     <section
       className="pt-32 pb-16 lg:pt-40 lg:pb-20"
@@ -67,18 +69,18 @@ function HeroCompact() {
           <ol className="flex items-center gap-2 text-sm">
             <li>
               <a href="/" className="transition-colors hover:text-[#C9A96E]" style={{ color: "#64748B" }}>
-                Главная
+                {t("criteria.breadcrumbHome") as string}
               </a>
             </li>
             <li style={{ color: "#64748B" }}>/</li>
-            <li style={{ color: "#94A3B8" }}>Критерии</li>
+            <li style={{ color: "#94A3B8" }}>{t("criteria.breadcrumbCriteria") as string}</li>
           </ol>
         </nav>
         <h1
           className="text-3xl sm:text-4xl lg:text-5xl leading-tight"
           style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
         >
-          Критерии включения в реестр
+          {t("criteria.heroTitle") as string}
         </h1>
       </div>
     </section>
@@ -87,16 +89,17 @@ function HeroCompact() {
 
 /* Main Criteria */
 function MainCriteriaSection() {
+  const { t } = useLanguage();
   const criteria = [
     {
       icon: GraduationCap,
-      title: "Высшее юридическое образование и опыт работы более 3 лет",
-      desc: "В том числе наличие соответствующего юриста в штате компании, либо наличие опыта участия в судебных разбирательствах",
+      title: t("criteria.criteria1Title") as string,
+      desc: t("criteria.criteria1Desc") as string,
     },
     {
       icon: UserCheck,
-      title: "Отсутствие дисквалификации",
-      desc: "Отсутствие в структуре управления лиц, подвергавшихся дисквалификации",
+      title: t("criteria.criteria2Title") as string,
+      desc: t("criteria.criteria2Desc") as string,
     },
   ];
 
@@ -108,11 +111,10 @@ function MainCriteriaSection() {
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Обязательные требования
+            {t("criteria.mainTitle") as string}
           </h2>
           <p className="mt-4 text-base" style={{ color: "#94A3B8" }}>
-            Для включения в Международный реестр юристов кандидат должен
-            соответствовать следующим критериям:
+            {t("criteria.mainSubtitle") as string}
           </p>
         </RevealSection>
 
@@ -156,22 +158,23 @@ function MainCriteriaSection() {
 
 /* Additional Criteria */
 function AdditionalCriteriaSection() {
+  const { t } = useLanguage();
   const criteria = [
-    { icon: Trophy, title: "Выигранные судебные процессы", desc: "Наличие выигранных судебных процессов в высшей судебной инстанции национального уровня" },
-    { icon: Globe2, title: "Международный опыт", desc: "Опыт судебных разбирательств в иностранных юрисдикциях или международных арбитражах" },
-    { icon: Building2, title: "Крупные компании", desc: "Правовое сопровождение деятельности крупных компаний и топ-менеджмента" },
-    { icon: FileText, title: "Amicus curiae", desc: "Опыт подготовки amicus curiae по запросу авторитетных организаций" },
-    { icon: Award, title: "Статусные достижения", desc: "Наличие статусных достижений в области юриспруденции" },
-    { icon: Landmark, title: "Филиалы за рубежом", desc: "Наличие иностранных филиалов и представительств" },
-    { icon: Star, title: "Рейтинги", desc: "Наличие рейтинга в рейтинговых проектах" },
-    { icon: BookOpen, title: "Публикации", desc: "Наличие публикаций в профессиональных изданиях" },
-    { icon: Scale, title: "Профессиональные ассоциации", desc: "Участие в профессиональных ассоциациях" },
-    { icon: FileText, title: "Публичная активность", desc: "Публичная активность компании и ее юристов" },
-    { icon: Gavel, title: "Интеллектуальная собственность", desc: "Наличие объектов интеллектуальной собственности" },
-    { icon: GraduationCap, title: "Финансирование процессов", desc: "Наличие услуги финансирования судебных процессов" },
-    { icon: Globe2, title: "Выход на IPO", desc: "Опыт сопровождения выхода на IPO" },
-    { icon: UserCheck, title: "Иностранные контрагенты", desc: "Наличие опыта судебных разбирательств с участием иностранных контрагентов" },
-    { icon: FileCheck, title: "Рекомендации", desc: "Рекомендации авторитетных организаций" },
+    { icon: Trophy, title: t("criteria.add1Title") as string, desc: t("criteria.add1Desc") as string },
+    { icon: Globe2, title: t("criteria.add2Title") as string, desc: t("criteria.add2Desc") as string },
+    { icon: Building2, title: t("criteria.add3Title") as string, desc: t("criteria.add3Desc") as string },
+    { icon: FileText, title: t("criteria.add4Title") as string, desc: t("criteria.add4Desc") as string },
+    { icon: Award, title: t("criteria.add5Title") as string, desc: t("criteria.add5Desc") as string },
+    { icon: Landmark, title: t("criteria.add6Title") as string, desc: t("criteria.add6Desc") as string },
+    { icon: Star, title: t("criteria.add7Title") as string, desc: t("criteria.add7Desc") as string },
+    { icon: BookOpen, title: t("criteria.add8Title") as string, desc: t("criteria.add8Desc") as string },
+    { icon: Scale, title: t("criteria.add9Title") as string, desc: t("criteria.add9Desc") as string },
+    { icon: FileText, title: t("criteria.add10Title") as string, desc: t("criteria.add10Desc") as string },
+    { icon: Gavel, title: t("criteria.add11Title") as string, desc: t("criteria.add11Desc") as string },
+    { icon: GraduationCap, title: t("criteria.add12Title") as string, desc: t("criteria.add12Desc") as string },
+    { icon: Globe2, title: t("criteria.add13Title") as string, desc: t("criteria.add13Desc") as string },
+    { icon: UserCheck, title: t("criteria.add14Title") as string, desc: t("criteria.add14Desc") as string },
+    { icon: FileCheck, title: t("criteria.add15Title") as string, desc: t("criteria.add15Desc") as string },
   ];
 
   return (
@@ -182,11 +185,10 @@ function AdditionalCriteriaSection() {
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Дополнительные критерии
+            {t("criteria.additionalTitle") as string}
           </h2>
           <p className="mt-4 text-base max-w-2xl" style={{ color: "#94A3B8" }}>
-            Следующие критерии не являются обязательными, но повышают шансы на
-            успешное включение в реестр:
+            {t("criteria.additionalSubtitle") as string}
           </p>
         </RevealSection>
 
@@ -226,24 +228,25 @@ function AdditionalCriteriaSection() {
 
 /* Procedure */
 function ProcedureSection() {
+  const { t } = useLanguage();
   const steps = [
-    { num: "01", title: "Подача заявки", desc: "Кандидат подает в Комиссию заявку на включение в реестр и уплачивает сбор" },
-    { num: "02", title: "Подбор экспертов", desc: "Эксперты АНО привлекаются на платной основе для независимой оценки" },
-    { num: "03", title: "Оценка соответствия", desc: "Эксперты проверяют кандидата на соответствие критериям и готовят заключение" },
-    { num: "04", title: "Включение в реестр", desc: "Кандидат, соответствующий критериям, включается в реестр" },
-    { num: "05", title: "Выдача свидетельства", desc: "Свидетельство АЮР содержит реестровый номер, специализацию и страну" },
+    { num: "01", title: t("criteria.step1Title") as string, desc: t("criteria.step1Desc") as string },
+    { num: "02", title: t("criteria.step2Title") as string, desc: t("criteria.step2Desc") as string },
+    { num: "03", title: t("criteria.step3Title") as string, desc: t("criteria.step3Desc") as string },
+    { num: "04", title: t("criteria.step4Title") as string, desc: t("criteria.step4Desc") as string },
+    { num: "05", title: t("criteria.step5Title") as string, desc: t("criteria.step5Desc") as string },
   ];
 
   return (
     <section className="py-20 lg:py-28" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="mb-12 lg:mb-16">
-          <p className="section-label mb-4">ПРОЦЕДУРА</p>
+          <p className="section-label mb-4">{t("criteria.procedureLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Порядок включения в реестр
+            {t("criteria.procedureTitle") as string}
           </h2>
         </RevealSection>
 
@@ -301,6 +304,7 @@ function ProcedureSection() {
 
 /* CTA */
 function CTASection() {
+  const { t } = useLanguage();
   return (
     <section
       className="py-20 lg:py-28"
@@ -316,14 +320,13 @@ function CTASection() {
             className="text-3xl sm:text-4xl lg:text-5xl mb-5"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Соответствуете критериям?
+            {t("criteria.ctaTitle") as string}
           </h2>
           <p
             className="text-base mb-8 max-w-2xl mx-auto"
             style={{ color: "#94A3B8" }}
           >
-            Если вы соответствуете основным критериям, подайте заявку на
-            включение в реестр прямо сейчас.
+            {t("criteria.ctaText") as string}
           </p>
           <a
             href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
@@ -338,7 +341,7 @@ function CTASection() {
               e.currentTarget.style.background = "#C9A96E";
             }}
           >
-            Подать заявку
+            {t("criteria.ctaButton") as string}
           </a>
         </RevealSection>
       </div>

@@ -13,6 +13,7 @@ import {
   Settings,
 } from "lucide-react";
 import Footer from "../sections/Footer";
+import { useLanguage } from "../i18n/LanguageContext";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -53,13 +54,8 @@ function RevealSection({
 }
 
 /* Hero */
-function HeroCompact({
-  title,
-  breadcrumbs,
-}: {
-  title: string;
-  breadcrumbs: { label: string; href: string }[];
-}) {
+function HeroCompact() {
+  const { t } = useLanguage();
   return (
     <section
       className="pt-32 pb-16 lg:pt-40 lg:pb-20"
@@ -68,31 +64,24 @@ function HeroCompact({
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <nav className="mb-6">
           <ol className="flex items-center gap-2 text-sm flex-wrap">
-            {breadcrumbs.map((crumb, i) => (
-              <li key={i} className="flex items-center gap-2">
-                {i > 0 && (
-                  <span style={{ color: "#64748B" }}>/</span>
-                )}
-                {i === breadcrumbs.length - 1 ? (
-                  <span style={{ color: "#94A3B8" }}>{crumb.label}</span>
-                ) : (
-                  <Link
-                    to={crumb.href}
-                    className="transition-colors hover:text-[#C9A96E]"
-                    style={{ color: "#64748B" }}
-                  >
-                    {crumb.label}
-                  </Link>
-                )}
-              </li>
-            ))}
+            <li className="flex items-center gap-2">
+              <Link
+                to="/"
+                className="transition-colors hover:text-[#C9A96E]"
+                style={{ color: "#64748B" }}
+              >
+                {t("about.breadcrumbHome") as string}
+              </Link>
+              <span style={{ color: "#64748B" }}>/</span>
+              <span style={{ color: "#94A3B8" }}>{t("about.breadcrumbAbout") as string}</span>
+            </li>
           </ol>
         </nav>
         <h1
           className="text-3xl sm:text-4xl lg:text-5xl leading-tight"
           style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
         >
-          {title}
+          {t("about.heroTitle") as string}
         </h1>
       </div>
     </section>
@@ -101,6 +90,7 @@ function HeroCompact({
 
 /* Description */
 function DescriptionSection() {
+  const { t } = useLanguage();
   return (
     <section className="py-16 lg:py-20" style={{ background: "#0B1120" }}>
       <div className="max-w-[800px] mx-auto px-6 lg:px-12">
@@ -109,19 +99,13 @@ function DescriptionSection() {
             className="text-base lg:text-lg leading-relaxed mb-6"
             style={{ color: "#94A3B8" }}
           >
-            Международный реестр юристов — это база данных проверенных юристов
-            из разных правовых систем. Это не рейтинг. Наличие в реестре
-            подтверждает квалификацию юриста, его профессиональную компетентность и
-            добросовестность.
+            {t("about.desc1") as string}
           </p>
           <p
             className="text-base lg:text-lg leading-relaxed mb-8"
             style={{ color: "#94A3B8" }}
           >
-            Прототип на национальном уровне — реестр адвокатов. Они могут быть
-            разные, но наличие статуса адвоката подтверждает квалификацию. На
-            международном уровне прототипом служат списки юристов при
-            консульствах и посольствах.
+            {t("about.desc2") as string}
           </p>
         </RevealSection>
 
@@ -131,10 +115,7 @@ function DescriptionSection() {
             style={{ background: "#151E32" }}
           >
             <p className="text-base" style={{ color: "#F1F5F9" }}>
-              Реестр будет содержать разделы по различным странам с указанием
-              специализации и знания языка. Реестр будет служить надежным
-              источником информации о юристе, его профиле, правовой системе,
-              квалификации.
+              {t("about.desc3") as string}
             </p>
           </div>
         </RevealSection>
@@ -145,26 +126,27 @@ function DescriptionSection() {
 
 /* Goals & Tasks */
 function TasksSection() {
+  const { t } = useLanguage();
   const tasks = [
     {
       icon: BookOpen,
-      title: "Международный реестр",
-      desc: "Создание и ведение международного реестра юристов (аккредитованных юристов стран СНГ, ЕАЭС, ШОС, БРИКС)",
+      title: t("about.task1Title") as string,
+      desc: t("about.task1Desc") as string,
     },
     {
       icon: GraduationCap,
-      title: "Образовательная платформа",
-      desc: "Создание образовательной платформы для подготовки юристов в области права стран СНГ, ЕАЭС, ШОС, БРИКС",
+      title: t("about.task2Title") as string,
+      desc: t("about.task2Desc") as string,
     },
     {
       icon: Award,
-      title: "Аккредитация юристов",
-      desc: "Аккредитация юристов государств-участников СНГ, ЕАЭС, ШОС, БРИКС по единым стандартам",
+      title: t("about.task3Title") as string,
+      desc: t("about.task3Desc") as string,
     },
     {
       icon: TrendingUp,
-      title: "Устранение барьеров",
-      desc: "Устранение трансграничных правовых барьеров для бизнеса и инвестиций",
+      title: t("about.task4Title") as string,
+      desc: t("about.task4Desc") as string,
     },
   ];
 
@@ -172,12 +154,12 @@ function TasksSection() {
     <section id="goals" className="py-20 lg:py-28" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="mb-12 lg:mb-16">
-          <p className="section-label mb-4">ЗАДАЧИ</p>
+          <p className="section-label mb-4">{t("about.tasksLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Задачи проекта
+            {t("about.tasksTitle") as string}
           </h2>
         </RevealSection>
 
@@ -217,36 +199,37 @@ function TasksSection() {
 
 /* Principles */
 function PrinciplesSection() {
+  const { t } = useLanguage();
   const principles = [
     {
       icon: Eye,
-      title: "Прозрачность",
-      desc: "Процедура включения в реестр открыта и доступна для ознакомления",
+      title: t("about.principle1Title") as string,
+      desc: t("about.principle1Desc") as string,
     },
     {
       icon: Target,
-      title: "Объективность",
-      desc: "Проверяемость сведений реестра независимыми экспертами",
+      title: t("about.principle2Title") as string,
+      desc: t("about.principle2Desc") as string,
     },
     {
       icon: Clock,
-      title: "Актуальность",
-      desc: "Сведения реестра регулярно обновляются и поддерживаются в актуальном состоянии",
+      title: t("about.principle3Title") as string,
+      desc: t("about.principle3Desc") as string,
     },
     {
       icon: Lock,
-      title: "Конфиденциальность",
-      desc: "Защита персональных данных участников реестра",
+      title: t("about.principle4Title") as string,
+      desc: t("about.principle4Desc") as string,
     },
     {
       icon: Globe,
-      title: "Общедоступность",
-      desc: "Сведения реестра доступны всем заинтересованным лицам",
+      title: t("about.principle5Title") as string,
+      desc: t("about.principle5Desc") as string,
     },
     {
       icon: Settings,
-      title: "Автономность",
-      desc: "Независимое управление реестром без внешнего вмешательства",
+      title: t("about.principle6Title") as string,
+      desc: t("about.principle6Desc") as string,
     },
   ];
 
@@ -254,12 +237,12 @@ function PrinciplesSection() {
     <section id="principles" className="py-20 lg:py-28" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="mb-12 lg:mb-16">
-          <p className="section-label mb-4">ПРИНЦИПЫ</p>
+          <p className="section-label mb-4">{t("about.principlesLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Принципы функционирования
+            {t("about.principlesTitle") as string}
           </h2>
         </RevealSection>
 
@@ -299,26 +282,27 @@ function PrinciplesSection() {
 
 /* Participants Detail */
 function ParticipantsDetailSection() {
+  const { t } = useLanguage();
   const participants = [
     {
-      name: "Ассоциация юристов России",
-      role: "Гарант доверия",
-      desc: "АЮР обеспечивает доверие к международному реестру юристов и образовательной платформе. Ассоциация является ключевым институтом, гарантирующим объективность и независимость реестра.",
+      name: t("home.participant1Name") as string,
+      role: t("home.participant1Role") as string,
+      desc: t("about.participant1Desc") as string,
     },
     {
-      name: "Комиссия АЮР по правовому обеспечению рыночной экономики",
-      role: "Экспертный орган",
-      desc: "Комиссия утверждает критерии оценки кандидатов, осуществляет мониторинг ведения реестра, проводит заседания по вопросу включения кандидатов, взаимодействует с государственными институтами.",
+      name: t("home.participant2Name") as string,
+      role: t("home.participant2Role") as string,
+      desc: t("about.participant2Desc") as string,
     },
     {
-      name: "АНО (Организация по аккредитации)",
-      role: "Оператор реестра",
-      desc: "АНО организует оценку кандидатов, разрабатывает программы подготовки к аккредитации, обеспечивает образовательный процесс, привлекает экспертов и ведет их список.",
+      name: t("home.participant3Name") as string,
+      role: t("home.participant3Role") as string,
+      desc: t("about.participant3Desc") as string,
     },
     {
-      name: "Эксперты",
-      role: "Верификация",
-      desc: "Эксперты проверяют кандидатов на соответствие критериям, подготавливают заключения по результатам проверки, формируют устойчивую профессиональную среду в области права стран СНГ, ЕАЭС, ШОС, БРИКС.",
+      name: t("home.participant4Name") as string,
+      role: t("home.participant4Role") as string,
+      desc: t("about.participant4Desc") as string,
     },
   ];
 
@@ -326,12 +310,12 @@ function ParticipantsDetailSection() {
     <section id="participants" className="py-20 lg:py-28" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="mb-12 lg:mb-16">
-          <p className="section-label mb-4">УЧАСТНИКИ</p>
+          <p className="section-label mb-4">{t("about.participantsDetailLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Участники проекта
+            {t("about.participantsDetailTitle") as string}
           </h2>
         </RevealSection>
 
@@ -370,6 +354,7 @@ function ParticipantsDetailSection() {
 
 /* CTA */
 function CTASection() {
+  const { t } = useLanguage();
   return (
     <section
       className="py-20 lg:py-28"
@@ -385,14 +370,13 @@ function CTASection() {
             className="text-3xl sm:text-4xl lg:text-5xl mb-5"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Присоединяйтесь к реестру
+            {t("about.ctaTitle") as string}
           </h2>
           <p
             className="text-base mb-8 max-w-2xl mx-auto"
             style={{ color: "#94A3B8" }}
           >
-            Станьте частью международного правового сообщества и получите
-            доступ к новым возможностям для развития вашей практики.
+            {t("about.ctaText") as string}
           </p>
           <a
             href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
@@ -407,7 +391,7 @@ function CTASection() {
               e.currentTarget.style.background = "#C9A96E";
             }}
           >
-            Подать заявку
+            {t("about.ctaButton") as string}
           </a>
         </RevealSection>
       </div>
@@ -420,13 +404,7 @@ export default function AboutPage() {
   return (
     <div style={{ background: "#0B1120", minHeight: "100vh" }}>
       <main>
-        <HeroCompact
-          title="О международном реестре юристов"
-          breadcrumbs={[
-            { label: "Главная", href: "/" },
-            { label: "О реестре", href: "/about" },
-          ]}
-        />
+        <HeroCompact />
         <DescriptionSection />
         <TasksSection />
         <PrinciplesSection />

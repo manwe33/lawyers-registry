@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Главная", href: "/" },
-  { label: "О реестре", href: "/about" },
-  { label: "Критерии", href: "/criteria" },
-  { label: "Контакты", href: "/contacts" },
-];
+import { useLanguage } from "../i18n/LanguageContext";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.home") as string, href: "/" },
+    { label: t("nav.about") as string, href: "/about" },
+    { label: t("nav.criteria") as string, href: "/criteria" },
+    { label: t("nav.contacts") as string, href: "/contacts" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
@@ -40,7 +43,7 @@ export default function Navigation() {
             className="text-sm font-medium tracking-wide"
             style={{ color: "#F1F5F9" }}
           >
-            Международный реестр юристов
+            {t("nav.logo") as string}
           </span>
         </Link>
 
@@ -55,10 +58,11 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          <LanguageSwitcher />
         </nav>
 
         {/* CTA Button */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-4">
           <a
             href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
             target="_blank"
@@ -75,7 +79,7 @@ export default function Navigation() {
               e.currentTarget.style.background = "#C9A96E";
             }}
           >
-            Подать заявку
+            {t("nav.cta") as string}
           </a>
         </div>
 
@@ -108,6 +112,9 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          <div className="pt-2">
+            <LanguageSwitcher />
+          </div>
           <a
             href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
             target="_blank"
@@ -115,7 +122,7 @@ export default function Navigation() {
             className="block w-full text-center px-5 py-3 rounded-lg text-sm font-medium mt-4"
             style={{ background: "#C9A96E", color: "#0B1120" }}
           >
-            Подать заявку
+            {t("nav.cta") as string}
           </a>
         </div>
       )}

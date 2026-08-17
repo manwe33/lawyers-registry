@@ -1,32 +1,35 @@
 import { Link } from "react-router-dom";
-
-const footerColumns = [
-  {
-    title: "О проекте",
-    links: [
-      { label: "О реестре", href: "/about" },
-      { label: "Участники", href: "/about#participants" },
-      { label: "Цели и задачи", href: "/about#goals" },
-    ],
-  },
-  {
-    title: "Информация",
-    links: [
-      { label: "Критерии включения", href: "/criteria" },
-      { label: "Процедура", href: "/contacts#procedure" },
-      { label: "Принципы", href: "/about#principles" },
-    ],
-  },
-  {
-    title: "Контакты",
-    links: [
-      { label: "Ассоциация юристов России", href: "/contacts" },
-      { label: "Комиссия АЮР", href: "/contacts" },
-    ],
-  },
-];
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const footerColumns = [
+    {
+      title: t("footer.col1Title") as string,
+      links: [
+        { label: t("footer.col1Link1") as string, href: "/about" },
+        { label: t("footer.col1Link2") as string, href: "/about#participants" },
+        { label: t("footer.col1Link3") as string, href: "/about#goals" },
+      ],
+    },
+    {
+      title: t("footer.col2Title") as string,
+      links: [
+        { label: t("footer.col2Link1") as string, href: "/criteria" },
+        { label: t("footer.col2Link2") as string, href: "/contacts#procedure" },
+        { label: t("footer.col2Link3") as string, href: "/about#principles" },
+      ],
+    },
+    {
+      title: t("footer.col3Title") as string,
+      links: [
+        { label: t("footer.col3Link1") as string, href: "/contacts" },
+        { label: t("footer.col3Link2") as string, href: "/contacts" },
+      ],
+    },
+  ];
+
   return (
     <footer style={{ background: "#080C18", borderTop: "1px solid #1E293B" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12 py-16 lg:py-20">
@@ -36,10 +39,10 @@ export default function Footer() {
             className="text-2xl lg:text-4xl mb-3"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Международный реестр юристов
+            {t("footer.title") as string}
           </h3>
           <p className="text-base max-w-xl" style={{ color: "#64748B" }}>
-            База данных проверенных юристов из стран СНГ, ЕАЭС, ШОС и БРИКС
+            {t("footer.subtitle") as string}
           </p>
         </div>
 
@@ -69,8 +72,6 @@ export default function Footer() {
             </div>
           ))}
         </div>
-
-
       </div>
     </footer>
   );

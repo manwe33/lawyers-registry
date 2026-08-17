@@ -11,6 +11,7 @@ import {
   Award,
 } from "lucide-react";
 import Footer from "../sections/Footer";
+import { useLanguage } from "../i18n/LanguageContext";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -52,6 +53,7 @@ function RevealSection({
 
 /* Hero */
 function HeroCompact() {
+  const { t } = useLanguage();
   return (
     <section
       className="pt-32 pb-16 lg:pt-40 lg:pb-20"
@@ -62,18 +64,18 @@ function HeroCompact() {
           <ol className="flex items-center gap-2 text-sm">
             <li>
               <a href="/" className="transition-colors hover:text-[#C9A96E]" style={{ color: "#64748B" }}>
-                Главная
+                {t("contacts.breadcrumbHome") as string}
               </a>
             </li>
             <li style={{ color: "#64748B" }}>/</li>
-            <li style={{ color: "#94A3B8" }}>Контакты</li>
+            <li style={{ color: "#94A3B8" }}>{t("contacts.breadcrumbContacts") as string}</li>
           </ol>
         </nav>
         <h1
           className="text-3xl sm:text-4xl lg:text-5xl leading-tight"
           style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
         >
-          Контакты
+          {t("contacts.heroTitle") as string}
         </h1>
       </div>
     </section>
@@ -82,6 +84,7 @@ function HeroCompact() {
 
 /* Contact Info */
 function ContactInfoSection() {
+  const { t } = useLanguage();
   return (
     <section className="py-16 lg:py-20" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
@@ -104,10 +107,10 @@ function ContactInfoSection() {
                     className="text-lg font-medium"
                     style={{ fontFamily: "Inter, sans-serif", color: "#F1F5F9" }}
                   >
-                    Ассоциация юристов России
+                    {t("contacts.ayurTitle") as string}
                   </h3>
                   <p className="text-sm" style={{ color: "#C9A96E" }}>
-                    Организатор проекта
+                    {t("contacts.ayurRole") as string}
                   </p>
                 </div>
               </div>
@@ -116,7 +119,7 @@ function ContactInfoSection() {
                 <div className="flex items-start gap-3">
                   <MapPin size={18} className="shrink-0 mt-0.5" style={{ color: "#94A3B8" }} />
                   <p className="text-sm" style={{ color: "#94A3B8" }}>
-                    Россия, Москва
+                    {t("contacts.ayurLocation") as string}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -128,7 +131,7 @@ function ContactInfoSection() {
                     className="text-sm transition-colors hover:text-[#C9A96E]"
                     style={{ color: "#94A3B8" }}
                   >
-                    alrf.ru
+                    {t("contacts.ayurWebsite") as string}
                   </a>
                 </div>
 
@@ -136,8 +139,7 @@ function ContactInfoSection() {
 
               <div className="mt-6 pt-6" style={{ borderTop: "1px solid #1E293B" }}>
                 <p className="text-sm" style={{ color: "#94A3B8" }}>
-                  Ассоциация юристов России обеспечивает доверие к
-                  международному реестру юристов и образовательной платформе.
+                  {t("contacts.ayurDesc") as string}
                 </p>
               </div>
             </div>
@@ -161,25 +163,24 @@ function ContactInfoSection() {
                     className="text-lg font-medium"
                     style={{ fontFamily: "Inter, sans-serif", color: "#F1F5F9" }}
                   >
-                    Комиссия АЮР
+                    {t("contacts.commissionTitle") as string}
                   </h3>
                   <p className="text-sm" style={{ color: "#C9A96E" }}>
-                    Экспертный орган
+                    {t("contacts.commissionRole") as string}
                   </p>
                 </div>
               </div>
 
               <p className="text-sm mb-5" style={{ color: "#94A3B8" }}>
-                Комиссия АЮР по правовому обеспечению рыночной экономики стран
-                СНГ, ЕАЭС, ШОС, БРИКС
+                {t("contacts.commissionDesc") as string}
               </p>
 
               <div className="space-y-3">
                 {[
-                  "Утверждение критериев оценки кандидатов",
-                  "Мониторинг ведения реестра",
-                  "Проведение заседаний по вопросу включения",
-                  "Взаимодействие с государственными институтами",
+                  t("contacts.commissionItem1") as string,
+                  t("contacts.commissionItem2") as string,
+                  t("contacts.commissionItem3") as string,
+                  t("contacts.commissionItem4") as string,
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm" style={{ color: "#94A3B8" }}>
                     <CheckCircle2 size={16} className="shrink-0 mt-0.5" style={{ color: "#C9A96E" }} />
@@ -196,7 +197,7 @@ function ContactInfoSection() {
                     className="text-sm transition-colors hover:text-[#C9A96E]"
                     style={{ color: "#94A3B8" }}
                   >
-                    legalsupport@alrf.ru
+                    {t("contacts.commissionEmail") as string}
                   </a>
                 </div>
               </div>
@@ -210,23 +211,24 @@ function ContactInfoSection() {
 
 /* How to Apply */
 function HowToApplySection() {
+  const { t } = useLanguage();
   const steps = [
-    { icon: FileText, title: "Подача заявки", desc: "Кандидат подает в Комиссию заявку на включение в реестр и уплачивает сбор" },
-    { icon: Search, title: "Оценка экспертами", desc: "Эксперты АНО проверяют кандидата на соответствие критериям и готовят заключение" },
-    { icon: GraduationCap, title: "Включение в реестр", desc: "Соответствующий критериям кандидат включается в Международный реестр юристов" },
-    { icon: Award, title: "Выдача свидетельства", desc: "Свидетельство АЮР содержит реестровый номер и специализацию" },
+    { icon: FileText, title: t("contacts.step1Title") as string, desc: t("contacts.step1Desc") as string },
+    { icon: Search, title: t("contacts.step2Title") as string, desc: t("contacts.step2Desc") as string },
+    { icon: GraduationCap, title: t("contacts.step3Title") as string, desc: t("contacts.step3Desc") as string },
+    { icon: Award, title: t("contacts.step4Title") as string, desc: t("contacts.step4Desc") as string },
   ];
 
   return (
     <section id="procedure" className="py-20 lg:py-28" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="mb-12 lg:mb-16">
-          <p className="section-label mb-4">КАК ПОДАТЬ ЗАЯВКУ</p>
+          <p className="section-label mb-4">{t("contacts.procedureLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Процедура включения в реестр
+            {t("contacts.procedureTitle") as string}
           </h2>
         </RevealSection>
 
@@ -250,7 +252,7 @@ function HowToApplySection() {
                   className="text-xs font-medium mb-3"
                   style={{ color: "#C9A96E", letterSpacing: "0.08em" }}
                 >
-                  ШАГ {String(i + 1).padStart(2, "0")}
+                  {t("contacts.stepLabel") as string} {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3
                   className="text-base font-medium mb-2"
@@ -272,6 +274,7 @@ function HowToApplySection() {
 
 /* CTA */
 function CTASection() {
+  const { t } = useLanguage();
   return (
     <section
       className="py-20 lg:py-28"
@@ -287,14 +290,13 @@ function CTASection() {
             className="text-3xl sm:text-4xl lg:text-5xl mb-5"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Начните процесс включения
+            {t("contacts.ctaTitle") as string}
           </h2>
           <p
             className="text-base mb-8 max-w-2xl mx-auto"
             style={{ color: "#94A3B8" }}
           >
-            Заполните форму заявки, и мы свяжемся с вами для обсуждения
-            дальнейших шагов.
+            {t("contacts.ctaText") as string}
           </p>
           <a
             href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
@@ -309,10 +311,10 @@ function CTASection() {
               e.currentTarget.style.background = "#C9A96E";
             }}
           >
-            Подать заявку
+            {t("contacts.ctaButton") as string}
           </a>
           <p className="mt-4 text-sm" style={{ color: "#64748B" }}>
-            После подачи заявки с вами свяжется наш специалист
+            {t("contacts.ctaNote") as string}
           </p>
         </RevealSection>
       </div>

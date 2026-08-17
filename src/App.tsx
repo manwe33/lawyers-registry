@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import Navigation from "./sections/Navigation";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -9,7 +10,7 @@ import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
-    <>
+    <LanguageProvider>
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -19,6 +20,6 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </LanguageProvider>
   );
 }

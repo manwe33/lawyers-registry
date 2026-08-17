@@ -11,6 +11,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import Footer from "../sections/Footer";
+import { useLanguage } from "../i18n/LanguageContext";
 
 /* ---------- Fade-in-up on scroll ---------- */
 function useReveal() {
@@ -57,6 +58,7 @@ function RevealSection({
 
 /* ---------- HERO ---------- */
 function HeroSection() {
+  const { t } = useLanguage();
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
@@ -95,14 +97,13 @@ function HeroSection() {
           className="text-4xl sm:text-5xl lg:text-7xl mb-6 leading-tight"
           style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
         >
-          Международный реестр юристов
+          {t("home.heroTitle") as string}
         </h1>
         <p
           className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed"
           style={{ color: "#94A3B8" }}
         >
-          База данных проверенных юристов из стран СНГ, ЕАЭС, ШОС и БРИКС.
-          Пространство доверия в международном праве.
+          {t("home.heroSubtitle") as string}
         </p>
         <a
           href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
@@ -117,7 +118,7 @@ function HeroSection() {
             e.currentTarget.style.background = "#C9A96E";
           }}
         >
-          Подать заявку на включение
+          {t("home.heroCta") as string}
         </a>
       </div>
     </section>
@@ -126,11 +127,12 @@ function HeroSection() {
 
 /* ---------- ABOUT ---------- */
 function AboutSection() {
+  const { t } = useLanguage();
   const goals = [
-    "Формирование пространства доверия в рамках права стран СНГ, ЕАЭС, ШОС, БРИКС",
-    "Содействие в разрешении споров",
-    "Создание площадки профессионального правового сообщества",
-    "Верифицированный источник информации о юристах разных стран",
+    t("home.goal1") as string,
+    t("home.goal2") as string,
+    t("home.goal3") as string,
+    t("home.goal4") as string,
   ];
 
   return (
@@ -139,22 +141,18 @@ function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left */}
           <RevealSection>
-            <p className="section-label mb-4">О ПРОЕКТЕ</p>
+            <p className="section-label mb-4">{t("home.aboutLabel") as string}</p>
             <h2
               className="text-3xl sm:text-4xl lg:text-5xl mb-6 leading-tight"
               style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
             >
-              Что такое Международный реестр юристов?
+              {t("home.aboutTitle") as string}
             </h2>
             <p
               className="text-base leading-relaxed"
               style={{ color: "#94A3B8" }}
             >
-              Международный реестр юристов — это база данных проверенных юристов
-              из разных правовых систем. Это не рейтинг, а верифицированный
-              источник информации о квалификации, специализации и компетенциях
-              юристов. Прототип на национальном уровне — реестр адвокатов.
-              Наличие статуса подтверждает квалификацию.
+              {t("home.aboutText") as string}
             </p>
           </RevealSection>
 
@@ -181,26 +179,27 @@ function AboutSection() {
 
 /* ---------- AUDIENCE ---------- */
 function AudienceSection() {
+  const { t } = useLanguage();
   const audiences = [
     {
       icon: Globe,
-      title: "Российский бизнес",
-      desc: "Поиск проверенного юриста в другой стране",
+      title: t("home.audience1Title") as string,
+      desc: t("home.audience1Desc") as string,
     },
     {
       icon: Users,
-      title: "Российские юристы",
-      desc: "Привлечение клиентов из других стран",
+      title: t("home.audience2Title") as string,
+      desc: t("home.audience2Desc") as string,
     },
     {
       icon: Scale,
-      title: "Иностранные юристы",
-      desc: "Привлечение клиентов из России",
+      title: t("home.audience3Title") as string,
+      desc: t("home.audience3Desc") as string,
     },
     {
       icon: Building2,
-      title: "Иностранный бизнес",
-      desc: "Поиск юриста в России",
+      title: t("home.audience4Title") as string,
+      desc: t("home.audience4Desc") as string,
     },
   ];
 
@@ -208,12 +207,12 @@ function AudienceSection() {
     <section className="py-24 lg:py-32" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="text-center mb-12 lg:mb-16">
-          <p className="section-label mb-4">ЦЕЛЕВАЯ АУДИТОРИЯ</p>
+          <p className="section-label mb-4">{t("home.audienceLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Для кого создан реестр?
+            {t("home.audienceTitle") as string}
           </h2>
         </RevealSection>
 
@@ -253,44 +252,45 @@ function AudienceSection() {
 
 /* ---------- PARTICIPANTS ---------- */
 function ParticipantsSection() {
+  const { t } = useLanguage();
   const participants = [
     {
       icon: Shield,
-      name: "Ассоциация юристов России",
-      role: "Гарант доверия",
+      name: t("home.participant1Name") as string,
+      role: t("home.participant1Role") as string,
       duties: [
-        "Обеспечение доверия к международному реестру юристов",
-        "Обеспечение доверия к образовательной платформе",
+        t("home.participant1Duty1") as string,
+        t("home.participant1Duty2") as string,
       ],
     },
     {
       icon: FileCheck,
-      name: "Комиссия АЮР",
-      role: "Экспертный орган",
+      name: t("home.participant2Name") as string,
+      role: t("home.participant2Role") as string,
       duties: [
-        "Утверждение критериев оценки кандидатов",
-        "Мониторинг ведения международного реестра",
-        "Проведение заседаний по включению в реестр",
+        t("home.participant2Duty1") as string,
+        t("home.participant2Duty2") as string,
+        t("home.participant2Duty3") as string,
       ],
     },
     {
       icon: Search,
-      name: "АНО (Организация по аккредитации)",
-      role: "Оператор реестра",
+      name: t("home.participant3Name") as string,
+      role: t("home.participant3Role") as string,
       duties: [
-        "Оценка кандидатов для включения в реестр",
-        "Разработка программ подготовки к аккредитации",
-        "Привлечение экспертов и ведение списка",
+        t("home.participant3Duty1") as string,
+        t("home.participant3Duty2") as string,
+        t("home.participant3Duty3") as string,
       ],
     },
     {
       icon: GraduationCap,
-      name: "Эксперты",
-      role: "Верификация",
+      name: t("home.participant4Name") as string,
+      role: t("home.participant4Role") as string,
       duties: [
-        "Проверка кандидатов на соответствие критериям",
-        "Подготовка заключений по результатам проверки",
-        "Формирование профессиональной среды",
+        t("home.participant4Duty1") as string,
+        t("home.participant4Duty2") as string,
+        t("home.participant4Duty3") as string,
       ],
     },
   ];
@@ -299,12 +299,12 @@ function ParticipantsSection() {
     <section className="py-24 lg:py-32" style={{ background: "#0B1120" }}>
       <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
         <RevealSection className="mb-12 lg:mb-16">
-          <p className="section-label mb-4">УЧАСТНИКИ</p>
+          <p className="section-label mb-4">{t("home.participantsLabel") as string}</p>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Участники проекта
+            {t("home.participantsTitle") as string}
           </h2>
         </RevealSection>
 
@@ -364,6 +364,7 @@ function ParticipantsSection() {
 
 /* ---------- CTA ---------- */
 function CTASection() {
+  const { t } = useLanguage();
   return (
     <section
       className="py-20 lg:py-28"
@@ -379,14 +380,13 @@ function CTASection() {
             className="text-3xl sm:text-4xl lg:text-5xl mb-5"
             style={{ fontFamily: "Playfair Display, serif", color: "#F1F5F9" }}
           >
-            Готовы стать частью реестра?
+            {t("home.ctaTitle") as string}
           </h2>
           <p
             className="text-base mb-8 max-w-2xl mx-auto"
             style={{ color: "#94A3B8" }}
           >
-            Подайте заявку на включение в Международный реестр юристов и
-            получите доступ к международному правовому сообществу.
+            {t("home.ctaText") as string}
           </p>
           <a
             href="https://forms.yandex.ru/cloud/6a38e1fbd0468868d2495679"
@@ -401,7 +401,7 @@ function CTASection() {
               e.currentTarget.style.background = "#C9A96E";
             }}
           >
-            Подать заявку
+            {t("home.ctaButton") as string}
           </a>
         </RevealSection>
       </div>
