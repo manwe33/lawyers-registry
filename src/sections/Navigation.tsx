@@ -83,14 +83,17 @@ export default function Navigation() {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          style={{ color: "#F1F5F9" }}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile: Language Switcher + Menu Toggle */}
+        <div className="md:hidden flex items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            className="p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{ color: "#F1F5F9" }}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
